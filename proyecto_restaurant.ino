@@ -22,14 +22,15 @@ const int regresar = HIGH;
 
 
 //velocidad del motor
-const int velMotor= 5;
+const int velMotor= 2;
+
 
 
 
 //distancia en CM enteros
-int distMesa1 =13;
-int distMesa2 =23;
-int distMesa3 =34;
+int distMesa1 = 5;
+int distMesa2 = 10;
+int distMesa3 = 15;
 
 //Estados de los botones
 int estadoBtnMesa1 = 0;
@@ -65,9 +66,9 @@ void imprimirTurno (int numeroMesa, int turnoMesa) {
   lcd.setCursor (0,0);
   lcd.print ("Pedido Recibido ");
   lcd.setCursor(0,1);
-  lcd.print(" Mesa: " );
+  lcd.print(" Mesa:" );
   lcd.print (numeroMesa);
-  lcd.print (" Turno: ");
+  lcd.print ("Turno:");
   lcd.print(turnoMesa);
 
 
@@ -120,10 +121,10 @@ bool verificarEstadoBoton (int estadoBtn, int numeroMesa){
 //convierte la distancia en CM a los pasos que debe dar el motor para alcanzar esa distancia
 //retorna un entero con los pasos.
 int convertirDistanciaPasos (int distancia) {
-  //Equivalencias: 5 pasos = 1 mm 
+  //Equivalencias: 200 pasos = 1 mm 
   //pasar cm a mm y luego multiplicar por su equivalencia en pasos
   distancia = distancia *10;
-  int pasos = distancia * 5;
+  int pasos = distancia * 200;
   return pasos;
 }
 
@@ -177,7 +178,7 @@ void enviarPedido (int numeroMesa){
   lcd.print("El carrito ha llegado");
   //aqui inicia el sensor a detectar si el cliente ha tomado o no la bandeja 
   lcd.setCursor(0,1);
-  lcd.print ("Esperando cliente");
+  lcd.print ("Esperando clte");
   
   do
   {
@@ -203,8 +204,9 @@ void enviarPedido (int numeroMesa){
   lcd.setCursor (0,0);
   lcd.print ("Hoy ha atendido");
   lcd.setCursor(0,1);
+  
+  lcd.print ("Total pdidos ");
   lcd.print (turno);
-  lcd.print (" pedidos");
 
 }
 
@@ -248,12 +250,12 @@ void loop  () {
   
 
   estadoBtnMesa2 = digitalRead (btnMesa2);
-  bool pedidoMesa2 = verificarEstadoBoton (estadoBtnMesa2, 2);
-  aceptarPedido (pedidoMesa2,2);
+  bool pedidoMesa2 = verificarEstadoBoton (estadoBtnMesa2, 3);
+  aceptarPedido (pedidoMesa2,3);
 
 
   estadoBtnMesa3 = digitalRead (btnMesa3);
-  bool pedidoMesa3 = verificarEstadoBoton (estadoBtnMesa3, 3);
-  aceptarPedido (pedidoMesa3,3);
+  bool pedidoMesa3 = verificarEstadoBoton (estadoBtnMesa3, 2);
+  aceptarPedido (pedidoMesa3,2);
 
 }
