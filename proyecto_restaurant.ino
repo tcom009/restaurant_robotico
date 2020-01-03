@@ -62,6 +62,16 @@ void setup () {
 
 //Esta funcion imprime el numero de la mesa al que le toca atender y que turno tiene
 void imprimirTurno (int numeroMesa, int turnoMesa) {
+  lcd.setCursor (0,0);
+  lcd.print ("Pedido Recibido ");
+  lcd.setCursor(0,1);
+  lcd.print(" Mesa: " );
+  lcd.print (numeroMesa);
+  lcd.print (" Turno: ");
+  lcd.print(turnoMesa);
+
+
+
   Serial.print ("LA MESA  ");
   Serial.print (numeroMesa);
   Serial.println(" ha hecho un pedido" );
@@ -157,23 +167,31 @@ void enviarPedido (int numeroMesa){
   pasosMesa =  convertirDistanciaPasos (distMesa3);
   break;
   }
-  Serial.println("Enviando pedido");
-  
-  //movemos el carrito hasta la mesa del cliente
-  Serial.println ("Moviendo carrito a la mesa...");
+  //Serial.println("Enviando pedido");
+   lcd.clear ();
+   lcd.setCursor(0,0);
+   lcd.print("Enviando pedido...");
   moverMotor (pasosMesa, enviar);
-  Serial.println ("El carrito ha llegado a la mesa");
+  lcd.clear ();
+  lcd.setCursor(0,0);
+  lcd.print("El carrito ha llegado");
   //aqui inicia el sensor a detectar si el cliente ha tomado o no la bandeja 
-  Serial.println ("Esperando a que el cliente tome su pedido...");
+  lcd.setCursor(0,1);
+  lcd.print ("Esperando cliente");
   
   do
   {
     bandeja = digitalRead (sensor);
   }
   while (bandeja == 0);
-  Serial.println("El cliente ha tomado su pedido");
-  Serial.println ("Esperando para retornar carrito...");
+  lcd.clear();
+  lcd.setCursor (0,0);
+  lcd.print("El cliente ha to");
+  lcd.setCursor (0,1);
+  lcd.print("mado su pedido");
   delay (5000);
+  lcd.clear();
+  lcd.print ("Retornando carrito");
   Serial.println ("Retornando carrito");
   moverMotor (pasosMesa, regresar);
   Serial.println ("El carrito ha llegado a la cocina");
@@ -181,6 +199,12 @@ void enviarPedido (int numeroMesa){
   Serial.print (turno);
   Serial.println (" pedidos.");
   Serial.println ("Listo para recibir mas pedidos");
+  lcd.clear ();
+  lcd.setCursor (0,0);
+  lcd.print ("Hoy ha atendido");
+  lcd.setCursor(0,1);
+  lcd.print (turno);
+  lcd.print (" pedidos");
 
 }
 
