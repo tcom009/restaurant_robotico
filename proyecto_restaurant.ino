@@ -29,8 +29,8 @@ const int velMotor= 2;
 
 //distancia en CM enteros
 int distMesa1 = 5;
-int distMesa2 = 10;
-int distMesa3 = 15;
+int distMesa2 = 15;
+int distMesa3 = 27;
 
 //Estados de los botones
 int estadoBtnMesa1 = 0;
@@ -121,10 +121,10 @@ bool verificarEstadoBoton (int estadoBtn, int numeroMesa){
 //convierte la distancia en CM a los pasos que debe dar el motor para alcanzar esa distancia
 //retorna un entero con los pasos.
 int convertirDistanciaPasos (int distancia) {
-  //Equivalencias: 200 pasos = 1 mm 
+  //Equivalencias: 25 pasos = 1 mm 
   //pasar cm a mm y luego multiplicar por su equivalencia en pasos
   distancia = distancia *10;
-  int pasos = distancia * 200;
+  int pasos = distancia * 25;
   return pasos;
 }
 
